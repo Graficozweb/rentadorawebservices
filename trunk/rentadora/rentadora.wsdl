@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:rnt="http://carrental.com/rentadora/" 
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+name="rentadora" 
+targetNamespace="http://carrental.com/rentadora/">
+
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://carrental.com/rentadora/">
+    
+    <!-- definicion de los beans del dominio del sistema -->
+    
+    <xsd:complexType name="vehiculo">
+		<xsd:sequence>
+			<xsd:element name="idVehiculo" type="xsd:int"  />
+			<xsd:element name="anioModelo" type="xsd:int" />
+			<xsd:element name="precioPorDia" type="xsd:float" />
+			<xsd:element name="estaRentado" type="xsd:boolean" />
+			<xsd:element name="modelo" type="xsd:string" />
+			<xsd:element name="numper" type="xsd:int"  />
+			<xsd:element name="numserial" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	
+	<xsd:complexType name="Reservacion">
+		<xsd:sequence>
+			<xsd:element name="idReservacion" type="xsd:int"  />
+			<xsd:element name="cliente" type="xsd:string"/> <!-- falta definir si sera un bean cliente -->
+			<xsd:element name="fechafin" type="xsd:date" />
+			<xsd:element name="fechainicio" type="xsd:date" />
+			<xsd:element name="vehiculo" type="rnt:vehiculo"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	
+	<xsd:complexType name="Renta">
+		<xsd:sequence>
+			<xsd:element name="idRenta" type="xsd:int"  />
+			<xsd:element name="cliente" type="xsd:string"/><!-- falta definir si sera un bean cliente -->
+			<xsd:element name="fechafin" type="xsd:date" />
+			<xsd:element name="fechainicio" type="xsd:date" />
+			<xsd:element name="vehiculo" type="rnt:vehiculo"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<!-- fin definicion de beans del dominio del sistema -->      
+	
+	<!-- primer servicio : consultar un vehiculo en base a su caracteristicas anio, precio, modelo o numero de personas -->
+      <!-- peticion de la consulta de vehiculos -->
+      <xsd:element name="consultarVehiculos">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="anioModelo" type="xsd:int" />
+			<xsd:element name="precioPorDia" type="xsd:float" />
+			<xsd:element name="modelo" type="xsd:string" />
+			<xsd:element name="numper" type="xsd:int"  />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!-- respuesta de la consulta de vehiculos -->
+      <xsd:element name="consultarVehiculosResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="vehiculos" type="rnt:vehiculo" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      
+    <!-- segundo servicio : registrar una renta de vehiculo -->
+      <!-- peticion del registro de la renta de vehiculos -->
+      <xsd:element name="registrarRentaVehiculo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="renta" type="rnt:Renta" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!-- respuesta del registro de la renta de vehiculos -->
+      <xsd:element name="registrarRentaVehiculoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="mensaje" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      
+      
+    <!-- tercer servicio : registrar una reservacion de vehiculo -->
+      <!-- peticion del registro de la reservacion de vehiculos -->
+      <xsd:element name="registrarReservacionVehiculo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="reservacion" type="rnt:Reservacion" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!-- respuesta del registro de la reservacion de vehiculos  -->
+      <xsd:element name="registrarReservacionVehiculoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="mensaje" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      
+    <!-- cuarto servicio : cancelacion de una reservacion en base al id-->
+      <!-- peticion de cancelacion -->
+      <xsd:element name="cancelarReservacion">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="idReservacion" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!-- respuesta de la cancelacion -->
+      <xsd:element name="cancelarReservacionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="mensaje" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  
+  
+  
+  <!-- *** Mensajes de los Servicios *** -->
+  
+  <!-- Consulta de vehiculos -->
+  <wsdl:message name="consultarVehiculosRequest">
+    <wsdl:part element="rnt:consultarVehiculos" name="parameters"/>
+  </wsdl:message>
+  
+  <wsdl:message name="consultarVehiculosResponse">
+    <wsdl:part element="rnt:consultarVehiculosResponse" name="parameters"/>
+  </wsdl:message>
+  
+   <!-- Renta de vehiculos -->
+  <wsdl:message name="registrarRentaVehiculoRequest">
+    <wsdl:part element="rnt:registrarRentaVehiculo" name="parameters"/>
+  </wsdl:message>
+  
+  <wsdl:message name="registrarRentaVehiculoResponse">
+    <wsdl:part element="rnt:registrarRentaVehiculoResponse" name="parameters"/>
+  </wsdl:message>
+  
+   <!-- Reservacion de vehiculos -->
+  <wsdl:message name="registrarReservacionVehiculoRequest">
+    <wsdl:part element="rnt:registrarReservacionVehiculo" name="parameters"/>
+  </wsdl:message>
+  
+  <wsdl:message name="registrarReservacionVehiculoResponse">
+    <wsdl:part element="rnt:registrarReservacionVehiculoResponse" name="parameters"/>
+  </wsdl:message>
+  
+   <!-- Cancelacion de Reservaciones -->
+  <wsdl:message name="cancelarReservacionRequest">
+    <wsdl:part element="rnt:cancelarReservacion" name="parameters"/>
+  </wsdl:message>
+  
+  <wsdl:message name="cancelarReservacionResponse">
+    <wsdl:part element="rnt:cancelarReservacionResponse" name="parameters"/>
+  </wsdl:message>
+  
+  <!-- *** puertos *** -->
+  
+  <wsdl:portType name="rentadora">
+    <wsdl:operation name="consultarVehiculos">
+      <wsdl:input message="rnt:consultarVehiculosRequest"/>
+      <wsdl:output message="rnt:consultarVehiculosResponse"/>
+    </wsdl:operation>
+    
+    <wsdl:operation name="registrarRentaVehiculo">
+      <wsdl:input message="rnt:registrarRentaVehiculoRequest"/>
+      <wsdl:output message="rnt:registrarRentaVehiculoResponse"/>
+    </wsdl:operation>
+    
+    <wsdl:operation name="registrarReservacionVehiculo">
+      <wsdl:input message="rnt:registrarReservacionVehiculoRequest"/>
+      <wsdl:output message="rnt:registrarReservacionVehiculoResponse"/>
+    </wsdl:operation>
+    
+    <wsdl:operation name="cancelarReservacion">
+      <wsdl:input message="rnt:cancelarReservacionRequest"/>
+      <wsdl:output message="rnt:cancelarReservacionResponse"/>
+    </wsdl:operation>
+    
+  </wsdl:portType>
+  
+  <wsdl:binding name="rentadoraSOAP" type="rnt:rentadora">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="consultarVehiculos">
+      <soap:operation soapAction="http://carrental.com/rentadora/consultarVehiculos"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registrarRentaVehiculo">
+      <soap:operation soapAction="http://carrental.com/rentadora/registrarRentaVehiculo"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registrarReservacionVehiculo">
+      <soap:operation soapAction="http://carrental.com/rentadora/registrarReservacionVehiculo"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cancelarReservacion">
+      <soap:operation soapAction="http://carrental.com/rentadora/cancelarReservacion"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  
+  <wsdl:service name="rentadora">
+    <wsdl:port binding="rnt:rentadoraSOAP" name="rentadoraSOAP">
+      <soap:address location="http://localhost:8080/rentadora/services/rentadora"/>
+    </wsdl:port>
+  </wsdl:service>
+  
+</wsdl:definitions>

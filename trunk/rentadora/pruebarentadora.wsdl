@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="RentadoraWSDL"
+	targetNamespace="http://www.exampleuri.com/rentadora" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:rnt="http://www.exampleuri.com/rentadora">
+
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified" targetNamespace="http://www.exampleuri.com/rentadora">
+			
+			<xsd:complexType name="vehiculo">
+				<xsd:sequence>
+					<xsd:element name="aniomodelo" type="xsd:int"
+						minOccurs="1" maxOccurs="1" />
+					<xsd:element name="costo" type="xsd:float" minOccurs="1"
+						maxOccurs="1">
+					</xsd:element>
+					<xsd:element name="estarentado" type="xsd:boolean"
+						minOccurs="1" maxOccurs="1" />
+					<xsd:element name="modelo" type="xsd:string" minOccurs="1"
+						maxOccurs="1" />
+					<xsd:element name="numper" type="xsd:int" minOccurs="1"
+						maxOccurs="1" />
+					<xsd:element name="numserial" type="xsd:string"
+						minOccurs="1" maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:element name="Reservacion" type="rnt:Reservacion" />
+			<xsd:complexType name="Reservacion">
+				<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+					<xsd:element name="cliente" type="xsd:string"
+						minOccurs="1" maxOccurs="1" />
+					<xsd:element name="fechafin" type="xsd:date" minOccurs="1"
+						maxOccurs="1" />
+					<xsd:element name="fechainicio" type="xsd:date"
+						minOccurs="1" maxOccurs="1" />
+					<xsd:element name="serialvehiculo" type="xsd:string"
+						minOccurs="1" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+		<xsd:element name="Renta" type="rnt:Renta" />
+			<xsd:complexType name="Renta">
+				<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+					<xsd:element name="cliente" type="xsd:string"
+						minOccurs="1" maxOccurs="1" />
+					<xsd:element name="fechafin" type="xsd:date" minOccurs="1"
+						maxOccurs="1" />
+					<xsd:element name="fechainicio" type="xsd:date"
+						minOccurs="1" maxOccurs="1" />
+					<xsd:element name="serialvehiculo" type="xsd:string"
+						minOccurs="1" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+<!--
+			<xsd:element name="RentaResponse" type="rnt:RentaResponse" />
+			<xsd:complexType name="RentaResponse">
+				<xsd:sequence>
+					<xsd:element name="numfactura" type="xsd:string"
+						minOccurs="1" maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			
+
+			<xsd:element name="ReservacionResponse" type="rnt:ReservacionResponse" />
+			<xsd:complexType name="ReservacionResponse">
+				<xsd:sequence>
+					<xsd:element name="reservacionnumber" type="xsd:int"
+						minOccurs="1" maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:complexType>
+			
+-->
+
+
+			<xsd:element name="VehiculoResponse" type="rnt:VehiculoResponse" />
+			<xsd:complexType name="VehiculoResponse">
+				<xsd:sequence>
+					<xsd:element name="Vehiculo" type="rnt:vehiculo" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:element name="VehiculoRequest" type="rnt:VehiculoRequest" />
+			<xsd:complexType name="VehiculoRequest">
+				<xsd:sequence>
+					<xsd:element name="aniomodelo" type="xsd:int"
+						minOccurs="0" maxOccurs="1" />
+					<xsd:element name="costo" type="xsd:float" minOccurs="0"
+						maxOccurs="1" />
+					<xsd:element name="estarentado" type="xsd:boolean"
+						minOccurs="0" maxOccurs="1" />
+					<xsd:element name="modelo" type="xsd:string" minOccurs="0"
+						maxOccurs="1" />
+					<xsd:element name="numper" type="xsd:int" minOccurs="0"
+						maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+
+
+	<wsdl:message name="ConsultarVehiculoRequest">
+		<wsdl:part name="ConsultarVehiculosRequest" element="rnt:VehiculoRequest" />
+	</wsdl:message>
+
+	<wsdl:message name="ConsultarVehiculoResponse">
+		<wsdl:part name="ConsultarVehiculosResponse" element="rnt:VehiculoResponse" />
+	</wsdl:message>
+
+	<wsdl:message name="RentarRequest">
+		<wsdl:part name="RentarRequest" element="rnt:Renta" />
+	</wsdl:message>
+
+	<wsdl:message name="RentarResponse">
+		<wsdl:part name="RentarResponse" element="xsd:string" />
+	</wsdl:message>
+
+	<wsdl:message name="ReservarRequest">
+		<wsdl:part name="ReservarRequest" element="rnt:Reservacion" />
+	</wsdl:message>
+
+	<wsdl:message name="ReservarResponse">
+		<wsdl:part name="ReservarResponse" element="xsd:string" />
+	</wsdl:message>
+
+	<wsdl:message name="CancelarReservacionRequest">
+		<wsdl:part name="CancelarReservacionRequest" element="xsd:string"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="CancelarReservacionResponse">
+		<wsdl:part name="CancelarReservacionResponse" element="xsd:string"></wsdl:part>
+	</wsdl:message>
+
+
+	<wsdl:portType name="RentadoraPortTypeSOAP">
+
+		<wsdl:operation name="consultarVehiculo">
+			<wsdl:input name="InputConsultaVehiculo" message="rnt:ConsultarVehiculoRequest" />
+			<wsdl:output name="outputConsultaVehiculo" message="rnt:ConsultarVehiculoResponse" />
+		</wsdl:operation>
+
+		<wsdl:operation name="Rentar">
+			<wsdl:input name="inputRentar" message="rnt:RentarRequest" />
+			<wsdl:output name="outputRentar" message="rnt:RentarResponse" />
+		</wsdl:operation>
+
+		<wsdl:operation name="Reservar">
+			<wsdl:input name="inputReservar" message="rnt:ReservarRequest" />
+			<wsdl:output name="outputReservar" message="rnt:ReservarResponse" />
+		</wsdl:operation>
+
+
+		<wsdl:operation name="CancelarReservacion">
+			<wsdl:input message="rnt:CancelarReservacionRequest" name="inputCancelarReservacion"></wsdl:input>
+			<wsdl:output message="rnt:CancelarReservacionResponse" name="outputCancelarReservacion"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+
+
+
+	<wsdl:binding name="RentadoraBinding" type="rnt:RentadoraPortTypeSOAP">
+
+		<soap:binding style="document"
+					  transport="http://schemas.xmlsoap.org/soap/http" />
+
+		<wsdl:operation name="consultarVehiculo">
+			<soap:operation soapAction="http://www.exampleuri.com/rentadora/consultarVehiculo" />
+			<wsdl:input name="InputConsultaVehiculo">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="outputConsultaVehiculo">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="Rentar">
+			<soap:operation soapAction="http://www.exampleuri.com/rentadora/Rentar" />
+			<wsdl:input name="inputRentar">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="outputRentar">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="Reservar">
+			<soap:operation soapAction="http://www.exampleuri.com/rentadora/Reservar" />
+			<wsdl:input name="inputReservar">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="outputReservar">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="CancelarReservacion">
+			<soap:operation soapAction="http://www.exampleuri.com/rentadora/CancelarReservacion" />
+			<wsdl:input name="inputCancelarReservacion">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="outputCancelarReservacion">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+	</wsdl:binding>
+
+	<wsdl:service name="RentadoraService">
+		<wsdl:port name="RentadoraPort" binding="rnt:RentadoraBinding">
+			<soap:address location="www.exampleLocation.com/rentadoraport" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>
