@@ -9,6 +9,7 @@ package com.carrental.rentadora;
 
 import java.util.ArrayList;
 
+import com.carrental.services.ReservacionServices;
 import com.carrental.services.VehiculoServices;
 
 /**
@@ -39,13 +40,19 @@ public class RentadoraSkeleton implements RentadoraSkeletonInterface{
 	 * @param cancelarReservacion2
 	 */
 
-	public com.carrental.rentadora.CancelarReservacionResponse cancelarReservacion
-	(
-			com.carrental.rentadora.CancelarReservacion cancelarReservacion2
-	)
-	{
-		//TODO : fill this with the necessary business logic
-		throw new  java.lang.UnsupportedOperationException("Please implement " + this.getClass().getName() + "#cancelarReservacion");
+	public com.carrental.rentadora.CancelarReservacionResponse 
+		cancelarReservacion(com.carrental.rentadora.CancelarReservacion request){
+		int id = request.getIdReservacion();
+		
+		ReservacionServices servicio = new ReservacionServices();
+		
+		String respuesta = servicio.cancelarReservacion(id);
+		
+		CancelarReservacionResponse response = new CancelarReservacionResponse();
+		
+		response.setMensaje(respuesta);
+		
+		return response;
 	}
 
 
