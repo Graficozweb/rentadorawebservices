@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5/05/2011 05:48:30 PM by Hibernate Tools 3.2.5.Beta -->
+<hibernate-mapping default-lazy="false">
+    <class name="com.carrental.rentadora.Vehiculo" table="vehiculos">
+        <id name="idVehiculo" type="int">
+            <column name="id_vehiculo" />
+            <generator class="identity" />
+        </id>
+        <property name="anioModelo" type="int">
+            <column name="anio_modelo" />
+        </property>
+        <property name="precioPorDia" type="float">
+            <column name="precio_dia" />
+        </property>
+        <property name="estaRentado" type="boolean">
+            <column name="esta_rentado" />
+        </property>
+        <property name="modelo" type="java.lang.String">
+            <column name="modelo" />
+        </property>
+        <property name="numper" type="int">
+            <column name="num_per" />
+        </property>
+        <property name="numserial" type="java.lang.String">
+            <column name="num_serial" />
+        </property>
+    </class>
+</hibernate-mapping>
