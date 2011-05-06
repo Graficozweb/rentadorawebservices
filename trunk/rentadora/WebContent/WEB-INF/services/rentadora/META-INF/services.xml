@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file was auto-generated from WSDL -->
+<!-- by the Apache Axis2 version: 1.5.4  Built on : Dec 19, 2010 (08:18:42 CET) -->
+<serviceGroup>
+    <service name="rentadora">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="com.carrental.rentadora.RentadoraMessageReceiverInOut"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">com.carrental.rentadora.RentadoraSkeleton</parameter>
+        <parameter name="useOriginalwsdl">true</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="registrarReservacionVehiculo" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://carrental.com/rentadora/">
+            <actionMapping>http://carrental.com/rentadora/registrarReservacionVehiculo</actionMapping>
+            <outputActionMapping>http://carrental.com/rentadora/rentadora/registrarReservacionVehiculoResponse</outputActionMapping>
+        </operation>
+        <operation name="cancelarReservacion" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://carrental.com/rentadora/">
+            <actionMapping>http://carrental.com/rentadora/cancelarReservacion</actionMapping>
+            <outputActionMapping>http://carrental.com/rentadora/rentadora/cancelarReservacionResponse</outputActionMapping>
+        </operation>
+        <operation name="registrarRentaVehiculo" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://carrental.com/rentadora/">
+            <actionMapping>http://carrental.com/rentadora/registrarRentaVehiculo</actionMapping>
+            <outputActionMapping>http://carrental.com/rentadora/rentadora/registrarRentaVehiculoResponse</outputActionMapping>
+        </operation>
+        <operation name="consultarVehiculos" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://carrental.com/rentadora/">
+            <actionMapping>http://carrental.com/rentadora/consultarVehiculos</actionMapping>
+            <outputActionMapping>http://carrental.com/rentadora/rentadora/consultarVehiculosResponse</outputActionMapping>
+        </operation>
+    </service>
+</serviceGroup>
