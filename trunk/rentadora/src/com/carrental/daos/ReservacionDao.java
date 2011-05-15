@@ -20,5 +20,19 @@ public class ReservacionDao {
 		session.getTransaction().commit();
 		
 	}
+	
+	
+
+	public void registrarReservacion(Reservacion res){
+		// TODO Auto-generated method stub
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+				
+		session.save(res);
+		
+		session.getTransaction().commit();
+		
+	}
 
 }
