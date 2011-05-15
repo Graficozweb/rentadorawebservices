@@ -17,16 +17,16 @@ public class VehiculoServices {
 		String condicion = "";
 		
 		if (anio > 0) {
-			condicion += " WHERE v.anioModelo ="+anio;
+			condicion += " WHERE v.anioModelo LIKE '%"+anio+"%'";
 		} 
 		
 		
 		
 		if (!modelo.isEmpty()) {
 			if (condicion.isEmpty()) {
-				condicion += " WHERE v.modelo LIKE '%" + modelo +"%'";
+				condicion += " WHERE UPPER(v.modelo) LIKE '%" + modelo.toUpperCase() +"%'";
 			} else {
-				condicion += " OR v.modelo LIKE '%" + modelo +"%'";
+				condicion += " OR UPPER(v.modelo) LIKE '%" +  modelo.toUpperCase() +"%'";
 			}
 		}
 		
