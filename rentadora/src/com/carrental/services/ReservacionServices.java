@@ -1,6 +1,7 @@
 package com.carrental.services;
 
 import com.carrental.daos.ReservacionDao;
+import com.carrental.rentadora.Reservacion;
 
 public class ReservacionServices {
 	
@@ -24,5 +25,22 @@ public class ReservacionServices {
 		
 		return resp;
 	}
+	
+	public String registrarReservacion(Reservacion res){
+	 String resp="";
+	 
+	 	try{
+	 		 reservacionDao.registrarReservacion(res);
+			resp = "Se realizo con exito la reservación:"+res.getCliente();
+
+	 	} catch(Exception e){
+	 		resp = "No se pudo realizar la reservación:";
+			e.printStackTrace();
+	 	}
+	 	
+	return resp;
+	
+	}
+	
 
 }

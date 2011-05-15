@@ -9,6 +9,7 @@ package com.carrental.rentadora;
 
 import java.util.ArrayList;
 
+import com.carrental.services.RentaServices;
 import com.carrental.services.ReservacionServices;
 import com.carrental.services.VehiculoServices;
 
@@ -25,12 +26,16 @@ public class RentadoraSkeleton implements RentadoraSkeletonInterface{
 	 */
 
 	public com.carrental.rentadora.RegistrarReservacionVehiculoResponse registrarReservacionVehiculo
-	(
-			com.carrental.rentadora.RegistrarReservacionVehiculo registrarReservacionVehiculo0
-	)
-	{
+	(com.carrental.rentadora.RegistrarReservacionVehiculo request){
 		//TODO : fill this with the necessary business logic
-		throw new  java.lang.UnsupportedOperationException("Please implement " + this.getClass().getName() + "#registrarReservacionVehiculo");
+		
+		ReservacionServices servicio = new ReservacionServices();
+				
+		RegistrarReservacionVehiculoResponse response = new RegistrarReservacionVehiculoResponse();
+		
+		response.setMensaje(servicio.registrarReservacion(request.getReservacion()));
+
+		return response;
 	}
 
 
@@ -41,17 +46,17 @@ public class RentadoraSkeleton implements RentadoraSkeletonInterface{
 	 */
 
 	public com.carrental.rentadora.CancelarReservacionResponse 
-		cancelarReservacion(com.carrental.rentadora.CancelarReservacion request){
+	cancelarReservacion(com.carrental.rentadora.CancelarReservacion request){
 		int id = request.getIdReservacion();
-		
+
 		ReservacionServices servicio = new ReservacionServices();
-		
+
 		String respuesta = servicio.cancelarReservacion(id);
-		
+
 		CancelarReservacionResponse response = new CancelarReservacionResponse();
-		
+
 		response.setMensaje(respuesta);
-		
+
 		return response;
 	}
 
@@ -64,11 +69,19 @@ public class RentadoraSkeleton implements RentadoraSkeletonInterface{
 
 	public com.carrental.rentadora.RegistrarRentaVehiculoResponse registrarRentaVehiculo
 	(
-			com.carrental.rentadora.RegistrarRentaVehiculo registrarRentaVehiculo4
+			com.carrental.rentadora.RegistrarRentaVehiculo request
 	)
 	{
 		//TODO : fill this with the necessary business logic
-		throw new  java.lang.UnsupportedOperationException("Please implement " + this.getClass().getName() + "#registrarRentaVehiculo");
+		
+		RentaServices servicio = new RentaServices();
+		
+		RegistrarRentaVehiculoResponse response = new RegistrarRentaVehiculoResponse();
+		
+		response.setMensaje( servicio.registrarRenta ( request.getRenta() ) );
+		
+		return response;
+		
 	}
 
 
@@ -79,24 +92,24 @@ public class RentadoraSkeleton implements RentadoraSkeletonInterface{
 	 */
 
 	public com.carrental.rentadora.ConsultarVehiculosResponse consultarVehiculos(com.carrental.rentadora.ConsultarVehiculos request) {
-		
+
 		int anio = request.getAnioModelo();
 		String modelo = request.getModelo();
 		int numper = request.getNumper();
 		float precio = request.getPrecioPorDia();
 		System.out.println(anio + " " + modelo + " " + numper + " " + precio);
-		
+
 		VehiculoServices servicio = new VehiculoServices();
-		
+
 		ConsultarVehiculosResponse response = new ConsultarVehiculosResponse();
 		ArrayList<Vehiculo> vehiculosList = servicio.consultarVehiculos(anio, modelo, numper, precio);
-		
+
 		Vehiculo [] vehiculosArray = new Vehiculo[vehiculosList.size()];
 		for (int i = 0; i < vehiculosList.size(); i++) {
 			vehiculosArray[i] = vehiculosList.get(i);
 		}
 		response.setVehiculos(vehiculosArray);
-		
+
 		return response;
 		//throw new  java.lang.UnsupportedOperationException("Please implement " + this.getClass().getName() + "#consultarVehiculos");
 	}
