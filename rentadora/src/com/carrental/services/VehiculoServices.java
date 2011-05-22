@@ -45,9 +45,15 @@ public class VehiculoServices {
 				condicion += " OR v.precioPorDia =" + precio;
 			}
 		}
+		System.out.println("[Car Rental]: Consulta de vehiculos...");
+		System.out.println("[Car Rental]: ejecuntado query :"+ condicion);
+		System.out.println("[Car Rental]: Buscando...");
+		ArrayList<Vehiculo> lista = vehiculoDao.consultarVehiculos(condicion);
 		
-		
-		return vehiculoDao.consultarVehiculos(condicion);
+		System.out.println("[Car Rental]: Se encontraron "+ lista.size() + " resultados");
+		System.out.println("[Car Rental]: Enviando lista ...");
+		System.out.println("[Car Rental]: Fin de la consulta.");
+		return lista;
 	}
 
 }
