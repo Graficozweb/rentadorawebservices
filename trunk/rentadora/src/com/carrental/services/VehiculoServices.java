@@ -55,5 +55,13 @@ public class VehiculoServices {
 		System.out.println("[Car Rental]: Fin de la consulta.");
 		return lista;
 	}
+	
+	public void rentarVehiculo(int id) throws Exception {
+		vehiculoDao.rentarVehiculo(id);
+	}
+	
+	public void liberarVehiculo(int id) throws Exception {
+		vehiculoDao.liberarVehiculo(id);
+	}
 
 }
