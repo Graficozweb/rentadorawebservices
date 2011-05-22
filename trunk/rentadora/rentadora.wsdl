@@ -27,7 +27,7 @@ targetNamespace="http://carrental.com/rentadora/">
 	<xsd:complexType name="Reservacion">
 		<xsd:sequence>
 			<xsd:element name="idReservacion" type="xsd:int"  />
-			<xsd:element name="cliente" type="xsd:string"/> <!-- falta definir si sera un bean cliente -->
+			<xsd:element name="cliente" type="xsd:string"/> 
 			<xsd:element name="fechafin" type="xsd:date" />
 			<xsd:element name="fechainicio" type="xsd:date" />
 			<xsd:element name="vehiculo" type="rnt:vehiculo"/>
@@ -38,7 +38,7 @@ targetNamespace="http://carrental.com/rentadora/">
 	<xsd:complexType name="Renta">
 		<xsd:sequence>
 			<xsd:element name="idRenta" type="xsd:int"  />
-			<xsd:element name="cliente" type="xsd:string"/><!-- falta definir si sera un bean cliente -->
+			<xsd:element name="cliente" type="xsd:string"/>
 			<xsd:element name="fechafin" type="xsd:date" />
 			<xsd:element name="fechainicio" type="xsd:date" />
 			<xsd:element name="vehiculo" type="rnt:vehiculo"/>
