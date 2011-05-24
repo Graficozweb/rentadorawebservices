@@ -36,4 +36,44 @@
     <servlet-name>AxisAdminServlet</servlet-name>
     <url-pattern>/axis2-admin/*</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ConsultarHabitacionServlet</display-name>
+    <servlet-name>ConsultarHabitacionServlet</servlet-name>
+    <servlet-class>com.servlets.ConsultarHabitacionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConsultarHabitacionServlet</servlet-name>
+    <url-pattern>/ConsultarHabitacionServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ConsultarVuelosDestinoServlet</display-name>
+    <servlet-name>ConsultarVuelosDestinoServlet</servlet-name>
+    <servlet-class>com.servlets.ConsultarVuelosDestinoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConsultarVuelosDestinoServlet</servlet-name>
+    <url-pattern>/ConsultarVuelosDestinoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ConsultarAsientosVueloServlet</display-name>
+    <servlet-name>ConsultarAsientosVueloServlet</servlet-name>
+    <servlet-class>com.servlets.ConsultarAsientosVueloServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConsultarAsientosVueloServlet</servlet-name>
+    <url-pattern>/ConsultarAsientosVueloServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReservarHabitacionServlet</display-name>
+    <servlet-name>ReservarHabitacionServlet</servlet-name>
+    <servlet-class>com.servlets.ReservarHabitacionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReservarHabitacionServlet</servlet-name>
+    <url-pattern>/ReservarHabitacionServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

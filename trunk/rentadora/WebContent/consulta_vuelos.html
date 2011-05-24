@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Consulta de Habitaciones</title>
+<style type="text/css">
+ul li {
+display:inline; float:left; padding:12px;
+}
+</style>
+<link rel="stylesheet" href="dev/themes/base/jquery.ui.all.css">
+	<script src="dev/jquery-1.5.1.js"></script>
+	<script src="dev/ui/jquery.ui.datepicker.js"></script>
+	
+	<script src="dev/ui/jquery.ui.core.js"></script>
+	<script src="dev/ui/jquery.ui.widget.js"></script>
+	<script src="dev/ui/jquery.ui.mouse.js"></script>
+	<script src="dev/ui/jquery.ui.button.js"></script>
+	<script src="dev/ui/jquery.ui.draggable.js"></script>
+	<script src="dev/ui/jquery.ui.position.js"></script>
+	<script src="dev/ui/jquery.ui.resizable.js"></script>
+	<script src="dev/ui/jquery.ui.dialog.js"></script>
+	<script src="dev/ui/jquery.effects.core.js"></script>
+
+	
+
+
+<script>
+
+function buscarVuelos() {
+
+	var destino = $("#destino").val();
+	if (destino == '') {
+		alert("El campo destino no debe estar vacio.");
+		return;
+	}
+	
+	$.get('ConsultarVuelosDestinoServlet',{'destino':destino}, 
+			function(data) {
+		var table = document.getElementById("table_flight");
+		table.innerHTML = data;
+	});
+}
+function verAsientos(dato) {
+	$.get('ConsultarAsientosVueloServlet',{'id':dato}, 
+			function(data) {
+		var table = document.getElementById("table_seats");
+		table.innerHTML = data;
+	});
+}
+</script>
+</head>
+<body >
+<ul  >
+	<li><a href="index.html">Inicio</a></li>
+	<li><a href="consulta_habitacion.html">Consulta de Habitaciones</a></li>
+	<li><a href="consulta_vuelos.html">Consulta de Vuelos</a></li>
+</ul><br/><br/>
+
+<h1>Consulta de Vuelos</h1>
+
+
+Destino: <input id="destino" name="destino" type="text"> <input type="button" value="Buscar" onclick="buscarVuelos();"></input>
+
+
+<table id="table_flight"  width="100%" class="ui-widget ui-widget-content">
+	<thead class='ui-widget-header '><tr><td>N&uacute;mero</td><td>Destino</td>
+				<td>Tipo</td><td>Clase</td><td>Operaciones</td></thead>
+	<tbody></tbody>
+</table>
+<h3>Lista de Asientos</h3>
+<table id="table_seats"  width="100%" class="ui-widget ui-widget-content">
+	<thead class='ui-widget-header '><tr><td>N&uacute;mero</td><td>Vuelo</td>
+				<td>Posicion</td><td>Costo</td><td>Clase</td></thead>
+	<tbody></tbody>
+</table>
+
+
+</body>
+</html>
