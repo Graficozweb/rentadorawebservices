@@ -23,7 +23,9 @@ public class RentaServices {
 	 	try{
 	 		System.out.println("[Car Rental]: Registrando nueva renta...");
 	 		System.out.println("[Car Rental]: Datos de la renta --> cliente:" + ren.getCliente());
+	 		
 	 		new VehiculoServices().rentarVehiculo(ren.getVehiculo().getIdVehiculo());
+	 		
 	 		rentaDao.registrarRenta(ren);
 	 		 
 			resp = "Se realizo con exito la Renta: "+ren.getCliente() + " numero:"+ ren.getIdRenta();

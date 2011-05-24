@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.tumbadero.com/hotel/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="hotel" targetNamespace="http://www.tumbadero.com/hotel/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.tumbadero.com/hotel/">
+    
+      <xsd:complexType name="Habitacion">
+      	<xsd:sequence>
+      		<xsd:element name="idHabitacion" type="xsd:int"></xsd:element>
+      		<xsd:element name="tipo" type="xsd:string"></xsd:element>
+      		<xsd:element name="tamanio" type="xsd:string"></xsd:element>
+      		<xsd:element name="capacidad" type="xsd:int"></xsd:element>
+      		<xsd:element name="precioNoche" type="xsd:float"></xsd:element>
+      		<xsd:element name="libre" type="xsd:boolean"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="Reservacion">
+      	<xsd:sequence>
+      		<xsd:element name="idReservacion" type="xsd:int"></xsd:element>
+      		<xsd:element name="Cliente" type="tns:Cliente"></xsd:element>
+      		<xsd:element name="fecha" type="xsd:date"></xsd:element>
+      		<xsd:element name="habitacion" type="tns:Habitacion"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="Cliente">
+      	<xsd:sequence>
+      		<xsd:element name="idCliente" type="xsd:int"></xsd:element>
+      		<xsd:element name="nombre" type="xsd:string"></xsd:element>
+      		<xsd:element name="apellido" type="xsd:string"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+    
+      <xsd:complexType name="PassDate">
+      	<xsd:sequence>
+      		<xsd:element name="idPassDate" type="xsd:int"></xsd:element>
+      		<xsd:element name="piscina" type="xsd:boolean"></xsd:element>
+      		<xsd:element name="buffet" type="xsd:boolean"></xsd:element>
+      		<xsd:element name="jacuzzi" type="xsd:boolean"></xsd:element>
+      		<xsd:element name="gimnasio" type="xsd:boolean"></xsd:element>
+      		<xsd:element name="deportivo" type="xsd:boolean"></xsd:element>
+      		<xsd:element name="precio" type="xsd:float"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      
+      <xsd:element name="consultarHabitacion">
+        <xsd:complexType>
+          <xsd:sequence>
+
+
+
+
+          	<xsd:element name="libre" type="xsd:boolean"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="consultarHabitacionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="habitacion" type="tns:Habitacion" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      
+      <xsd:element name="reservarHabitacion">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="reservacion" type="tns:Reservacion"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="reservarHabitacionResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="mensaje" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:element name="registrarCliente">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="cliente" type="tns:Cliente"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="registrarClienteResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="mensaje" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      
+      <xsd:element name="comprarPassDate">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="passDate" type="tns:PassDate"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>      
+      <xsd:element name="comprarPassDateResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="mensaje" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      
+    </xsd:schema>
+  </wsdl:types>
+  
+  
+  <wsdl:message name="consultarHabitacionRequest">
+    <wsdl:part element="tns:consultarHabitacion" name="parameters"/>
+  </wsdl:message>
+  
+  <wsdl:message name="consultarHabitacionResponse">
+    <wsdl:part element="tns:consultarHabitacionResponse" name="parameters"/>
+  </wsdl:message>
+  
+  <wsdl:message name="reservarHabitacionRequest">
+  	<wsdl:part name="parameters" element="tns:reservarHabitacion"/>
+  </wsdl:message>
+  
+  <wsdl:message name="reservarHabitacionResponse">
+  	<wsdl:part name="parameters" element="tns:reservarHabitacionResponse"/>
+  </wsdl:message>
+  
+  <wsdl:message name="registrarClienteRequest">
+  	<wsdl:part name="parameters" element="tns:registrarCliente"/>
+  </wsdl:message>
+  
+  <wsdl:message name="registrarClienteResponse">
+  	<wsdl:part name="parameters" element="tns:registrarClienteResponse"/>
+  </wsdl:message>
+  
+  <wsdl:message name="comprarPassDateRequest">
+  	<wsdl:part name="parameters" element="tns:comprarPassDate"/>
+  </wsdl:message>
+  
+  <wsdl:message name="comprarPassDateResponse">
+  	<wsdl:part name="parameters" element="tns:comprarPassDateResponse"/>
+  </wsdl:message>
+  
+  <wsdl:portType name="hotel">
+    <wsdl:operation name="consultarHabitacion">
+      <wsdl:input message="tns:consultarHabitacionRequest"/>
+      <wsdl:output message="tns:consultarHabitacionResponse"/>
+    </wsdl:operation>
+    
+    <wsdl:operation name="reservarHabitacion">
+    	<wsdl:input message="tns:reservarHabitacionRequest"></wsdl:input>
+    	<wsdl:output message="tns:reservarHabitacionResponse"></wsdl:output>
+    </wsdl:operation>
+    
+    <wsdl:operation name="registrarCliente">
+    	<wsdl:input message="tns:registrarClienteRequest"></wsdl:input>
+    	<wsdl:output message="tns:registrarClienteResponse"></wsdl:output>
+    </wsdl:operation>
+    
+    <wsdl:operation name="comprarPassDate">
+    	<wsdl:input message="tns:comprarPassDateRequest"></wsdl:input>
+    	<wsdl:output message="tns:comprarPassDateResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  
+  <wsdl:binding name="hotelSOAP" type="tns:hotel">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="consultarHabitacion">
+      <soap:operation soapAction="http://www.tumbadero.com/hotel/consultarHabitacion"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reservarHabitacion">
+      <soap:operation soapAction="http://www.tumbadero.com/hotel/reservarHabitacion"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registrarCliente">
+      <soap:operation soapAction="http://www.tumbadero.com/hotel/registrarCliente"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="comprarPassDate">
+      <soap:operation soapAction="http://www.tumbadero.com/hotel/comprarPassDate"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  
+  <wsdl:service name="hotel">
+    <wsdl:port binding="tns:hotelSOAP" name="hotelSOAP">
+      <soap:address location="http://localhost:8080/hotel/services/hotel"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

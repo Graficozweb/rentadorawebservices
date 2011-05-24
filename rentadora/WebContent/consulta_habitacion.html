@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Consulta de Habitaciones</title>
+<style type="text/css">
+ul li {
+display:inline; float:left; padding:12px;
+}
+</style>
+<link rel="stylesheet" href="dev/themes/base/jquery.ui.all.css">
+	<script src="dev/jquery-1.5.1.js"></script>
+	<script src="dev/ui/jquery.ui.datepicker.js"></script>
+	
+	<script src="dev/ui/jquery.ui.core.js"></script>
+	<script src="dev/ui/jquery.ui.widget.js"></script>
+	<script src="dev/ui/jquery.ui.mouse.js"></script>
+	<script src="dev/ui/jquery.ui.button.js"></script>
+	<script src="dev/ui/jquery.ui.draggable.js"></script>
+	<script src="dev/ui/jquery.ui.position.js"></script>
+	<script src="dev/ui/jquery.ui.resizable.js"></script>
+	<script src="dev/ui/jquery.ui.dialog.js"></script>
+	<script src="dev/ui/jquery.effects.core.js"></script>
+
+	
+
+
+<script>
+
+function cargarHabitaciones(dato) {
+	$.get('ConsultarHabitacionServlet',{'libre':dato}, 
+			function(data) {
+		var table = document.getElementById("table_habs");
+		table.innerHTML = data;
+	});
+}
+
+function registrarReservacion() {
+	var nombre = $("#nombre").val();
+
+	if(nombre == '') {
+		alert("El nombre es obligatorio");
+		return;
+	}
+	var apellido = $("#apellido").val();
+	if(apellido == '') {
+		alert("El apellido es obligatorio");
+		return;
+	}
+	var numero = $("#numero").val();
+	if(numero == '') {
+		alert("Debe Seleccionar una habitacion");
+		return;
+	}
+	var fecha = $("#fecha").val();
+
+	
+	$.get('ReservarHabitacionServlet',{'id':numero,'nombre':nombre,'apellido':apellido,'fecha':fecha}, 
+			function(data) {
+		alert(data);
+		cargarHabitaciones(true);
+	});
+}
+
+function iniciarReservacion(dato){
+	$("#numero").val(dato);
+	var fecha = new Date();
+	var day = fecha.getDay();
+	var mes = fecha.getMonth();
+	var anio = fecha.getFullYear();
+	$("#fecha").val(day+'/'+mes+'/'+anio);
+	
+}
+</script>
+
+</head>
+<body onload="cargarHabitaciones(true);">
+<ul  >
+	<li><a href="index.html">Inicio</a></li>
+	<li><a href="consulta_habitacion.html">Consulta de Habitaciones</a></li>
+	<li><a href="consulta_vuelos.html">Consulta de Vuelos</a></li>
+</ul><br/>
+<br/>
+
+<h1>Consulta de Habitaciones</h1>
+
+<button id='Disponibles' onclick="cargarHabitaciones(true);">Disponibles</button>
+<button id='ocupadas' onclick="cargarHabitaciones(false);">Ocupadas</button>
+<table id="table_habs"  width="100%" class="ui-widget ui-widget-content">
+	<thead class="ui-widget-header ">
+		<tr>
+			<td>N&uacute;mero</td>
+			<td>Libre</td>
+			<td>Tipo</td>
+			<td>Tama&ntilde;o</td>
+			<td>Capacidad</td>
+			<td>Precio por noche</td>
+			<td>Operaciones</td>
+		</tr>
+		
+	</thead>
+	<tbody></tbody>
+</table>
+<div id="dialog-form" title="Reservar Habitacion">
+	<p class="validateTips">Todos los campos son requeridos.</p>
+
+	<form>
+	<fieldset>
+		<label for="fecha">Numero de Habitacion</label>
+		<input type="text" name="numero" id="numero" class="text ui-widget-content ui-corner-all" disabled="disabled"/>
+		<br/><label for="fecha">Fecha</label>
+		<input type="text" name="fecha" id="fecha" class="text ui-widget-content ui-corner-all" disabled="disabled"/>
+		<label for="nombre">Nombre(s)</label>
+		<input type="text" name="nombre" id="nombre" value="" class="text ui-widget-content ui-corner-all" />
+		<label for="apellido">Apellido(s)</label>
+		<input type="text" name="apellido" id="apellido" value="" class="text ui-widget-content ui-corner-all" />
+		<input type="button" value="Registrar" onclick="registrarReservacion();"></input>
+	</fieldset>
+	</form>
+</div>
+
+</body>
+</html>

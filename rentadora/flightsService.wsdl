@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:fls="http://flight.com/flightsService/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="flightsService"
+	targetNamespace="http://flight.com/flightsService/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://flight.com/flightsService/"
+			elementFormDefault="qualified">
+			<xsd:element name="reserveSeat">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="client" type="xsd:string" />
+						<xsd:element name="seats" type="fls:Seat" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="reserveSeatResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="reserveConfirmation" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="paySeat">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="seat" type="xsd:string"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="paySeatResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+
+						<xsd:element name="out" type="xsd:string"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="searchFlightByDestiny">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="destiny" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="searchFlightByDestinyResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="findFligths" type="fls:Flight"
+							minOccurs="0" maxOccurs="unbounded"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getAvailableSeats">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="flight" type="xsd:string"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getAvailableSeatsResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="availableSeats" type="fls:Seat"
+							minOccurs="0" maxOccurs="unbounded"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="Seat">
+				<xsd:sequence>
+					<xsd:element name="seatID" type="xsd:int"></xsd:element>
+					<xsd:element name="flight" type="xsd:int"></xsd:element>
+					<xsd:element name="seatPosition" type="xsd:string"></xsd:element>
+					<xsd:element name="seatCost" type="xsd:double"></xsd:element>
+					<xsd:element name="seatClass" type="xsd:string"></xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="Flight">
+				<xsd:sequence>
+					<xsd:element name="flightID" type="xsd:int"></xsd:element>
+					<xsd:element name="destiny" type="xsd:string"></xsd:element>
+					<xsd:element name="type" type="xsd:string"></xsd:element>
+					<xsd:element name="fligthClass" type="xsd:string"></xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="reserveSeatRequest">
+		<wsdl:part element="fls:reserveSeat" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="reserveSeatResponse">
+		<wsdl:part element="fls:reserveSeatResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="paySeatRequest">
+		<wsdl:part name="parameters" element="fls:paySeat"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="paySeatResponse">
+		<wsdl:part name="parameters" element="fls:paySeatResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="searchFlightByDestinyRequest">
+		<wsdl:part element="fls:searchFlightByDestiny" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="searchFlightByDestinyResponse">
+		<wsdl:part element="fls:searchFlightByDestinyResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getAvailableSeatsRequest">
+		<wsdl:part name="parameters" element="fls:getAvailableSeats"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getAvailableSeatsResponse">
+		<wsdl:part name="parameters" element="fls:getAvailableSeatsResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="flightsService">
+		<wsdl:operation name="reserveSeat">
+			<wsdl:input message="fls:reserveSeatRequest" />
+			<wsdl:output message="fls:reserveSeatResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="paySeat">
+			<wsdl:input message="fls:paySeatRequest"></wsdl:input>
+			<wsdl:output message="fls:paySeatResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="searchFlightByDestiny">
+			<wsdl:input message="fls:searchFlightByDestinyRequest" />
+			<wsdl:output message="fls:searchFlightByDestinyResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="getAvailableSeats">
+			<wsdl:input message="fls:getAvailableSeatsRequest"></wsdl:input>
+			<wsdl:output message="fls:getAvailableSeatsResponse"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="flightsServiceSOAP" type="fls:flightsService">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="reserveSeat">
+			<soap:operation soapAction="http://flight.com/flightsService/reserveSeat" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="paySeat">
+			<soap:operation soapAction="http://flight.com/flightsService/paySeat" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="searchFlightByDestiny">
+			<soap:operation
+				soapAction="http://flight.com/flightsService/searchFlightByDestiny" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getAvailableSeats">
+			<soap:operation soapAction="http://flight.com/flightsService/getAvailableSeats" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="flightsService">
+		<wsdl:port binding="fls:flightsServiceSOAP" name="flightsServiceSOAP">
+			<soap:address location="http://localhost:8080/flights/services/flightsService" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,16 @@
+#Mon May 23 15:48:08 CDT 2011
+eclipse.preferences.version=1
+encoding//src/com/flight/flightsService/Flight.java=UTF-8
+encoding//src/com/flight/flightsService/FlightsServiceSOAPStub.java=UTF-8
+encoding//src/com/flight/flightsService/FlightsService_PortType.java=UTF-8
+encoding//src/com/flight/flightsService/FlightsService_Service.java=UTF-8
+encoding//src/com/flight/flightsService/FlightsService_ServiceLocator.java=UTF-8
+encoding//src/com/flight/flightsService/Seat.java=UTF-8
+encoding//src/com/tumbadero/www/hotel/Cliente.java=UTF-8
+encoding//src/com/tumbadero/www/hotel/Habitacion.java=UTF-8
+encoding//src/com/tumbadero/www/hotel/HotelSOAPStub.java=UTF-8
+encoding//src/com/tumbadero/www/hotel/Hotel_PortType.java=UTF-8
+encoding//src/com/tumbadero/www/hotel/Hotel_Service.java=UTF-8
+encoding//src/com/tumbadero/www/hotel/Hotel_ServiceLocator.java=UTF-8
+encoding//src/com/tumbadero/www/hotel/PassDate.java=UTF-8
+encoding//src/com/tumbadero/www/hotel/Reservacion.java=UTF-8
