@@ -52,6 +52,13 @@ public class ConsultarAsientosVueloServlet extends HttpServlet {
 		String resp = "<thead class='ui-widget-header '><tr><td>N&uacute;mero</td><td>Vuelo</td>" +
 				"<td>Posicion</td><td>Costo</td><td>Clase</td></thead>";
 		resp += "<tbody>";
+		
+		if(seats == null) {
+			resp += "</tbody>";
+			PrintWriter pw = response.getWriter();
+			pw.print(resp);
+			return;
+		}
 		for (int i=0 ; i < seats.length; i++) {
 			resp += "<tr>";
 			resp += "<td>"+seats[i].getSeatID()+"</td>";
