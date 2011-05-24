@@ -7,6 +7,10 @@
 ul li {
 display:inline; float:left; padding:12px;
 }
+
+body {
+background-color: #F2F2F2;
+}
 </style>
 <link rel="stylesheet" href="dev/themes/base/jquery.ui.all.css">
 	<script src="dev/jquery-1.5.1.js"></script>
@@ -79,6 +83,7 @@ function iniciarReservacion(dato){
 	<li><a href="index.html">Inicio</a></li>
 	<li><a href="consulta_habitacion.html">Consulta de Habitaciones</a></li>
 	<li><a href="consulta_vuelos.html">Consulta de Vuelos</a></li>
+	<li><a href="consulta_vehiculos.html">Informaci&oacute;n Rentadora</a></li>
 </ul><br/>
 <br/>
 
@@ -105,16 +110,16 @@ function iniciarReservacion(dato){
 	<p class="validateTips">Todos los campos son requeridos.</p>
 
 	<form>
-	<fieldset>
+	<fieldset title="Reservar Habitacion">
 		<label for="fecha">Numero de Habitacion</label>
 		<input type="text" name="numero" id="numero" class="text ui-widget-content ui-corner-all" disabled="disabled"/>
 		<br/><label for="fecha">Fecha</label>
 		<input type="text" name="fecha" id="fecha" class="text ui-widget-content ui-corner-all" disabled="disabled"/>
-		<label for="nombre">Nombre(s)</label>
+		<br/><label for="nombre">Nombre(s)</label>
 		<input type="text" name="nombre" id="nombre" value="" class="text ui-widget-content ui-corner-all" />
-		<label for="apellido">Apellido(s)</label>
+		<br/><label for="apellido">Apellido(s)</label>
 		<input type="text" name="apellido" id="apellido" value="" class="text ui-widget-content ui-corner-all" />
-		<input type="button" value="Registrar" onclick="registrarReservacion();"></input>
+		<br/><input type="button" value="Registrar" onclick="registrarReservacion();"></input>
 	</fieldset>
 	</form>
 </div>

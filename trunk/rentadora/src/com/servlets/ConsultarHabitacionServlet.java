@@ -57,7 +57,7 @@ public class ConsultarHabitacionServlet extends HttpServlet {
 		String resp = "<thead class='ui-widget-header '><tr><td>N&uacute;mero</td><td>Libre</td><td>Tipo</td><td>Tama&ntilde;o</td>" +
 			"<td>Capacidad</td><td>Precio por noche</td><td>Opciones</td></tr></thead>";
 		resp += "<tbody>";
-		if(habs.length == 0) {
+		if (habs == null) {
 			resp += "</tbody>";
 			response.getWriter().print(resp);
 			return;

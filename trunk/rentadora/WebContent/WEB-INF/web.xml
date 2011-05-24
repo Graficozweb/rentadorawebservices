@@ -76,4 +76,34 @@
     <servlet-name>ReservarHabitacionServlet</servlet-name>
     <url-pattern>/ReservarHabitacionServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ConsultarVehiculosServlet</display-name>
+    <servlet-name>ConsultarVehiculosServlet</servlet-name>
+    <servlet-class>com.servlets.ConsultarVehiculosServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConsultarVehiculosServlet</servlet-name>
+    <url-pattern>/ConsultarVehiculosServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ConsultarRentasServlet</display-name>
+    <servlet-name>ConsultarRentasServlet</servlet-name>
+    <servlet-class>com.servlets.ConsultarRentasServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConsultarRentasServlet</servlet-name>
+    <url-pattern>/ConsultarRentasServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ConsultarReservacionesServlet</display-name>
+    <servlet-name>ConsultarReservacionesServlet</servlet-name>
+    <servlet-class>com.servlets.ConsultarReservacionesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConsultarReservacionesServlet</servlet-name>
+    <url-pattern>/ConsultarReservacionesServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
