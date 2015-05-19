@@ -1,0 +1,1 @@
+implementacion de web services usando tecnologia java y axis en los servicios de una rentadora de vehiculos. Se usa un wsdl para definir los servicios
